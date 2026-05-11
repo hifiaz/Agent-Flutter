@@ -1,0 +1,52 @@
+{
+  "name": "agent_flutter",
+  "version": "1.0.0",
+  "description": "Multi-agent peer-to-peer Flutter development system",
+  "architecture": "multi-agent",
+  "agents": [
+    "orchestrator",
+    "research",
+    "code",
+    "design",
+    "qa",
+    "test",
+    "build",
+    "deploy",
+    "devops"
+  ],
+  "checkpoints": [
+    {
+      "id": "checkpoint_1",
+      "name": "Research Approval",
+      "requires_user_approval": true,
+      "after_agent": "research"
+    },
+    {
+      "id": "checkpoint_2",
+      "name": "QA + Test Pass",
+      "requires_user_approval": false,
+      "threshold": {
+        "lint_errors": 0,
+        "test_coverage": 80
+      },
+      "after_agents": ["qa", "test"]
+    },
+    {
+      "id": "checkpoint_3",
+      "name": "Deploy Approval",
+      "requires_user_approval": true,
+      "after_agent": "deploy"
+    }
+  ],
+  "platforms": ["ios", "android", "web"],
+  "storage": {
+    "modes": ["local", "firebase"]
+  },
+  "payment_providers": ["revenuecat"],
+  "supported_locales": ["en", "id", "ms", "th", "vi", "zh", "ja", "ko"],
+  "pipelines": {
+    "ci": ".github/workflows/ci.yml",
+    "build": ".github/workflows/build.yml",
+    "deploy": ".github/workflows/deploy.yml"
+  }
+}

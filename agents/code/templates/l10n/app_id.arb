@@ -1,0 +1,16 @@
+{
+  "@@locale": "id",
+  "appTitle": "Aplikasi Saya",
+  "welcomeMessage": "Selamat datang di {appName}!",
+  "taskTitle": "Judul Tugas",
+  "saveButton": "Simpan",
+  "cancelButton": "Batal",
+  "deleteButton": "Hapus",
+  "confirmDelete": "Apakah Anda yakin ingin menghapus ini?",
+  "errorOccurred": "Terjadi kesalahan",
+  "noTasks": "Belum ada tugas",
+  "addTask": "Tambah Tugas",
+  "settings": "Pengaturan",
+  "language": "Bahasa",
+  "darkMode": "Mode Gelap"
+}

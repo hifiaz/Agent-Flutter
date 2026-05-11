@@ -1,0 +1,35 @@
+*.log
+node_modules/
+.env
+.env.*
+!.env.example
+
+# Logs
+logs/
+
+# Build
+build/
+android/app/src/main/**/google-services.json
+ios/**/google-services.json
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Coverage
+coverage/
+
+# Test reports
+test_reports/
+
+# Projects (generated)
+projects/*/
+!projects/.gitkeep
+
+# Pinokio
+.pinokio/

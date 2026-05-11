@@ -1,0 +1,20 @@
+{
+  "version": "1.0.0",
+  "current_project": null,
+  "pipeline_status": "idle",
+  "checkpoint_current": null,
+  "agents_status": {
+    "orchestrator": "idle",
+    "research": "idle",
+    "code": "idle",
+    "design": "idle",
+    "qa": "idle",
+    "test": "idle",
+    "build": "idle",
+    "deploy": "idle",
+    "devops": "idle"
+  },
+  "artifacts": {},
+  "errors": [],
+  "history": []
+}

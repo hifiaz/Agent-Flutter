@@ -1,0 +1,60 @@
+{
+  "@@locale": "en",
+  "appTitle": "My App",
+  "@appTitle": {
+    "description": "The title of the application"
+  },
+  "welcomeMessage": "Welcome to {appName}!",
+  "@welcomeMessage": {
+    "description": "Welcome message displayed on home screen",
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "taskTitle": "Task Title",
+  "@taskTitle": {
+    "description": "Label for task title input"
+  },
+  "saveButton": "Save",
+  "@saveButton": {
+    "description": "Save button text"
+  },
+  "cancelButton": "Cancel",
+  "@cancelButton": {
+    "description": "Cancel button text"
+  },
+  "deleteButton": "Delete",
+  "@deleteButton": {
+    "description": "Delete button text"
+  },
+  "confirmDelete": "Are you sure you want to delete this?",
+  "@confirmDelete": {
+    "description": "Confirmation message for deletion"
+  },
+  "errorOccurred": "An error occurred",
+  "@errorOccurred": {
+    "description": "Generic error message"
+  },
+  "noTasks": "No tasks yet",
+  "@noTasks": {
+    "description": "Message when task list is empty"
+  },
+  "addTask": "Add Task",
+  "@addTask": {
+    "description": "Add task button text"
+  },
+  "settings": "Settings",
+  "@settings": {
+    "description": "Settings page title"
+  },
+  "language": "Language",
+  "@language": {
+    "description": "Language setting label"
+  },
+  "darkMode": "Dark Mode",
+  "@darkMode": {
+    "description": "Dark mode toggle label"
+  }
+}
