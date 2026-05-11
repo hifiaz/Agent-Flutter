@@ -197,3 +197,120 @@ After code generation:
   }
 }
 ```
+
+---
+
+## Documentation Generation
+
+The Code Agent also handles automatic documentation generation.
+
+### 1. README.md Generation
+
+Generate from `manifest.json`:
+```markdown
+# [Project Name]
+
+[Description]
+
+## Features
+- [Feature 1]
+- [Feature 2]
+
+## Tech Stack
+- Flutter with [state_management]
+- [database] for local storage
+- [navigation] for routing
+
+## Getting Started
+1. Clone repository
+2. flutter pub get
+3. flutter run
+
+## Supported Platforms
+- [iOS] [Android] [Web]
+
+## Localization
+Supported: [locales list]
+
+## Payment
+Powered by RevenueCat
+```
+
+### 2. API Documentation
+
+Use Dart doc comments:
+```dart
+/// Repository for managing [Entity] data.
+///
+/// Provides CRUD operations and data synchronization.
+/// Use this for all data access within the app.
+abstract class EntityRepository {
+  /// Get all [Entity] items.
+  ///
+  /// Returns a list of entities, or empty list if none exist.
+  Future<List<Entity>> getAll();
+
+  /// Get single [Entity] by [id].
+  ///
+  /// Throws [EntityNotFoundException] if not found.
+  Future<Entity> getById(String id);
+
+  /// Create new [Entity].
+  ///
+  /// Returns the created entity with generated ID.
+  Future<Entity> create(Entity entity);
+
+  /// Update existing [Entity].
+  ///
+  /// Throws [EntityNotFoundException] if not found.
+  Future<void> update(Entity entity);
+
+  /// Delete [Entity] by [id].
+  ///
+  /// Throws [EntityNotFoundException] if not found.
+  Future<void> delete(String id);
+}
+```
+
+### 3. Generated Docs Structure
+
+```
+projects/[name]/docs/
+├── README.md              # Project overview
+├── API.md                 # API documentation
+├── ARCHITECTURE.md        # Code architecture
+├── SETUP.md               # Setup guide
+└── CHANGELOG.md           # Version history
+```
+
+### 4. Documentation Generation Commands
+
+```bash
+# Generate dart doc
+dart doc
+
+# Generate API markdown
+dart doc --format=markdown > docs/API.md
+
+# Generate README from manifest
+node bin/generate_readme.js projects/[name]
+```
+
+### 5. Auto-generated Files
+
+| File | Source | When |
+|------|--------|------|
+| `README.md` | manifest.json + features | After code generation |
+| `API.md` | Dart doc comments | After dart doc |
+| `ARCHITECTURE.md` | Project structure | After code generation |
+| `SETUP.md` | Dependencies | After code generation |
+
+### 6. Documentation Checklist
+
+- [ ] README.md with project overview
+- [ ] API.md with all public interfaces
+- [ ] ARCHITECTURE.md with code structure
+- [ ] SETUP.md with installation instructions
+- [ ] All public classes have doc comments
+- [ ] Example usage in doc comments
+- [ ] Version in pubspec.yaml matches CHANGELOG.md
