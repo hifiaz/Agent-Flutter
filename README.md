@@ -5,16 +5,22 @@ Multi-agent peer-to-peer Flutter development system.
 ## Features
 
 - **9 Specialized Agents**: Research, Code, Design, QA, Test, Build, Deploy, DevOps
+- **Multi-Tool Support**: Opencode, Claude Code, Cursor
 - **Automated Pipeline**: From research to deployment
 - **AI Asset Generation**: SDXL via Pinokio
 - **RevenueCat Integration**: Built-in payment support
-- **i18n Support**: Multi-language localization
+- **i18n Support**: Multi-language localization (en, id, ms, th, vi, zh, ja, ko)
 - **CI/CD Setup**: GitHub Actions workflows
 
 ## Quick Start
 
+### Opencode (Recommended)
+
 ```bash
-# Initialize new project
+cd agent_flutter
+npm install
+
+# Initialize project
 node bin/cli.js init my_app \
   --description="Task management app" \
   --platforms=ios,android,web \
@@ -28,30 +34,119 @@ node bin/cli.js generate my_app
 node bin/cli.js status
 ```
 
+### Claude Code
+
+```bash
+cd agent_flutter
+claude
+
+# Use slash commands
+/flutter-create todo_app --platforms ios,android
+/flutter-agent design
+/flutter-status
+```
+
+### Cursor
+
+```bash
+cd agent_flutter
+cursor .
+
+# Type / in chat for slash commands
+/flutter-create
+/flutter-status
+```
+
 ## Architecture
 
 ```
 Orchestrator
     │
-    ├── Research → Feature analysis
-    ├── Code → Flutter implementation
-    ├── Design → SDXL assets
-    ├── QA → Linting + Security
-    ├── Test → Unit + Widget + Integration
-    ├── Build → iOS + Android + Web
-    ├── Deploy → App Store + Play Store
-    └── DevOps → CI/CD + Git hooks
+    ├── Research → Feature analysis, competitor research
+    ├── Code → Flutter implementation, RevenueCat, i18n
+    ├── Design → SDXL assets (via Pinokio)
+    ├── QA → Linting, security scanning
+    ├── Test → Unit, widget, integration tests
+    ├── Build → iOS, Android, Web compilation
+    ├── Deploy → App Store, Play Store (semi-manual credentials)
+    └── DevOps → CI/CD, Git hooks, environments
+```
+
+## Agents
+
+| Agent | Description | Config Location |
+|-------|-------------|-----------------|
+| **Orchestrator** | Central coordinator, user interface | `agents/orchestrator/` |
+| **Research** | Competitor analysis, feature matrix | `agents/research/` |
+| **Code** | Flutter code, RevenueCat, i18n | `agents/code/` |
+| **Design** | SDXL asset generation | `agents/design/` |
+| **QA** | Linting, security, code review | `agents/qa/` |
+| **Test** | Unit, widget, integration tests | `agents/test/` |
+| **Build** | iOS, Android, Web builds | `agents/build/` |
+| **Deploy** | App Store, Play Store upload | `agents/deploy/` |
+| **DevOps** | CI/CD, Git hooks | `agents/devops/` |
+
+## Tool-Specific Configuration
+
+| Tool | Configuration | Location |
+|------|---------------|----------|
+| **Opencode** | SKILL.md (frontmatter) | `agents/opencode/` |
+| **Claude Code** | INSTRUCTIONS.md + commands | `agents/claude/`, `.claude/` |
+| **Cursor** | .cursorrules | `agents/cursor/` |
+
+See [docs/multi_tool_guide.md](docs/multi_tool_guide.md) for detailed usage.
+
+## Checkpoints
+
+| Checkpoint | User Approval | Condition |
+|------------|---------------|-----------|
+| After Research | ✅ Yes | Review feature matrix |
+| After QA + Test | ❌ No | lint=0, coverage>=80% |
+| After Deploy | ✅ Yes | Confirm before publishing |
+
+## Global Installation
+
+To use from any folder:
+
+```bash
+# Option 1: Clone to ~/.agent_flutter
+git clone https://github.com/USERNAME/agent_flutter.git ~/.agent_flutter
+echo 'export PATH="$HOME/.agent_flutter/bin:$PATH"' >> ~/.zshrc
+source ~/.zshrc
+
+# Option 2: npm install -g
+npm install -g /path/to/agent_flutter
+
+# Then use anywhere:
+agent_flutter init my_app
+```
+
+## Upload to GitHub
+
+```bash
+cd agent_flutter
+git init
+touch projects/.gitkeep
+git add .
+git commit -m "Initial: Multi-agent Flutter development system"
+gh repo create agent_flutter --public --source=. --push
 ```
 
 ## Documentation
 
-- [Architecture](docs/architecture.md)
-- [Agent Protocols](docs/agent_protocols.md)
-- [Getting Started](docs/getting_started.md)
+- [Architecture](docs/architecture.md) - System architecture
+- [Agent Protocols](docs/agent_protocols.md) - Agent communication
+- [Getting Started](docs/getting_started.md) - Usage guide
+- [Multi-Tool Guide](docs/multi_tool_guide.md) - Opencode/Claude/Cursor usage
+- [Tool Compatibility](docs/tool_compatibility.md) - Feature comparison
 
 ## Requirements
 
 - Node.js 18+
 - Flutter SDK 3.10+
 - Git
-- Pinokio (optional, for Design Agent)
+- Pinokio (optional, for Design Agent with SDXL)
+
+## License
+
+MIT

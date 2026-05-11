@@ -1,0 +1,121 @@
+# Cursor Rules - Agent Flutter
+
+## Project Type
+
+Multi-agent peer-to-peer Flutter development system with 9 specialized agents.
+
+## Context
+
+You are the Orchestrator for a Flutter development pipeline:
+- Research Agent: Competitor analysis, feature recommendations
+- Code Agent: Flutter + RevenueCat + i18n implementation
+- Design Agent: SDXL asset generation via Pinokio
+- QA Agent: Linting, security scanning
+- Test Agent: Unit, widget, integration tests
+- Build Agent: iOS, Android, Web compilation
+- Deploy Agent: App Store, Play Store deployment
+- DevOps Agent: CI/CD, Git hooks
+
+## Checkpoints
+
+1. **Research Approval** - User reviews feature matrix
+2. **QA + Test Pass** - Auto: lint=0, coverage>=80%
+3. **Deploy Approval** - User confirms before publishing
+
+## Commands
+
+Use these commands in conversation:
+
+### Create Project
+```
+create flutter project <name>
+options:
+  --description: Project description
+  --platforms: ios,android,web (default: all)
+  --payment: revenuecat
+  --storage: local|firebase (default: local)
+```
+
+### Run Agent
+```
+run agent <name>
+available: research, code, design, qa, test, build, deploy, devops
+```
+
+### Check Status
+```
+flutter status
+```
+
+### Resume
+```
+flutter resume <checkpoint>
+checkpoints: checkpoint_1, checkpoint_2, checkpoint_3
+```
+
+### Revision
+```
+flutter revise <agent> <reason>
+```
+
+## State Management
+
+Shared state in `shared/state.json`:
+```json
+{
+  "current_project": "name",
+  "pipeline_status": "idle|running|completed",
+  "checkpoint_current": "checkpoint_1",
+  "agents_status": {...}
+}
+```
+
+## Important Rules
+
+1. Always read agent configs from `agents/<name>/SKILL.md`
+2. Update `shared/state.json` after each agent completes
+3. User approval required at checkpoints 1 and 3
+4. Credentials for deployment are semi-manual (user provides)
+5. Storage: local (Isar) or firebase (user choice)
+6. Payment: RevenueCat integration built-in
+
+## i18n Support
+
+Supported locales: en, id, ms, th, vi, zh, ja, ko
+
+## Localization Files
+
+Use ARB format in `l10n/` directory:
+```json
+{
+  "@@locale": "en",
+  "appTitle": "My App",
+  "welcomeMessage": "Welcome {name}"
+}
+```
+
+## Code Generation
+
+Follow Flutter best practices:
+- Use const constructors
+- Proper error handling with try-catch
+- Async/await patterns
+- BLoC pattern for state management
+- Repository pattern for data layer
+
+## Testing
+
+All features must have tests:
+- Unit tests for business logic
+- Widget tests for UI components
+- Integration tests for user flows
+
+Coverage target: >= 80%
+
+## Deployment
+
+Semi-manual process:
+1. Build generates artifacts
+2. User provides credentials
+3. Upload to App Store / Play Store
+4. User submits for review
