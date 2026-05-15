@@ -9,8 +9,8 @@ const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 
-// Configuration
-const ROOT_DIR = __dirname;
+// Configuration - go up one level from bin/
+const ROOT_DIR = path.join(__dirname, '..');
 const SHARED_DIR = path.join(ROOT_DIR, 'shared');
 const AGENTS_DIR = path.join(ROOT_DIR, 'agents');
 const PROJECTS_DIR = path.join(ROOT_DIR, 'projects');
